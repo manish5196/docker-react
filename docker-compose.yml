@@ -1,0 +1,22 @@
+# This is docker-compose.yml file demonstrate how to run ract app
+# Usage: 
+#   Build:  docker-compose --build
+#   Run: docker-compose up  or or docker-compose up -d
+#   Build and Run: or docker-compose up --build   or docker-compose up -d --build
+#   Stop : docker-compose down
+#   Status: docker-compose ps 
+# Notes:
+#    1: Here -d is meant for run the command and quit so that you can use terminal
+#    2: Above these command only work where  docker-compose.yml file present
+
+version: '3'
+services: 
+    web: 
+        build: 
+            context: .
+            dockerfile: Dockerfile.dev
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - /app/node_modules
+            - .:/app

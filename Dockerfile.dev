@@ -1,0 +1,20 @@
+#Description: This demonstrate to run node webapp using docker
+#Build command:  docker build -f Dockerfile.dev -t manishdubey001/reactapp . 
+#Run command: docker run -p 8080:8090 manishdubey001/simplenodeapp:latest 
+#Connect to running docker container terminal: 
+#  docker exec -it <container-id> sh  e.g  docker exec -it e13b81970295 sh
+#Start Created container from image: docker start <container-id> e.g docker start e13b81970295
+
+# Specify base image
+FROM node:alpine
+
+#Specify working directory
+WORKDIR /app
+
+#Install Dependencies
+COPY ./package.json ./
+RUN npm install
+COPY ./ ./
+
+# Specify default command run when container start
+CMD ["npm", "run", "start"]
