@@ -9,12 +9,13 @@
 FROM node:alpine
 
 #Specify working directory
-WORKDIR /app
+WORKDIR '/app'
 
 #Install Dependencies
-COPY ./package.json ./
+COPY package.json .
 RUN npm install
-COPY ./ ./
+RUN npm audit fix
+COPY . .
 
 # Specify default command run when container start
 CMD ["npm", "run", "start"]
